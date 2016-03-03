@@ -1,0 +1,20 @@
+{
+  "generator-angular-meteor": {
+    "filters": {
+      "coffee": true,
+      "jade": true,
+      "stylus": true,
+      "pagination": false,
+      "framework": "ionic",
+      "bower": false,
+      "auth": true,
+      "oauth": true,
+      "facebookAuth": true,
+      "appname": "buildoSolidFunApp",
+      "projectname": "buildoSolidFun",
+      "modules": "'angular-meteor'\n  'ionic'\n  'accounts.ui'",
+      "usedBower": true
+    },
+    "appname": "buildoSolidFun"
+  }
+}
