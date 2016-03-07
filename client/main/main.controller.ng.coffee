@@ -3,9 +3,11 @@
 angular.module 'buildoSolidFunApp'
 .controller 'MainCtrl', ($scope, $ionicScrollDelegate, $meteor) ->
 
+  Users = $meteor.collection(Meteor.users)
+
   $scope.helpers
     things: () => Things.find {}, { sort: { createdAt: -1 } }
-    users: () => $meteor.collection(Meteor.users)
+    users: () => Users
 
   $scope.subscribe 'things', () ->
     [
@@ -24,7 +26,9 @@ angular.module 'buildoSolidFunApp'
   update = (thing) =>
     Things.update thing._id, { $set: { parties: thing.parties } }
 
-  $scope.picture = (userId, options = {}) => "//graph.facebook.com/#{userId}/picture?height=#{options.height}"
+  $scope.picture = (user, options = {}) => "//graph.facebook.com/#{user.services.facebook.id}/picture?height=#{options.height}"
+
+  $scope.pictureFromId = (_id) => $scope.picture Users.find(_id)
 
   $scope.togglePerson = (thing, person) =>
     if thing.parties.indexOf(person) is -1

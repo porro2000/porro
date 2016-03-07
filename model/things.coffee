@@ -9,6 +9,6 @@ Things.allow
     console.log(userId, thing, fields, modifier)
     thing.updatedAt = new Date()
     thing.name_sort = thing.name.toLowerCase()
-    userId
+    userId is thing.createdBy
   remove: (userId, thing) ->
-    userId
+    userId is thing.createdBy
