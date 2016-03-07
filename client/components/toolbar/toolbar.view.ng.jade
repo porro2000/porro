@@ -1,7 +1,6 @@
 .bar.bar-footer.bar-positive.item-input-inset(ng-if='currentUser' ng-controller='ToolbarCtrl')
   label.item-input-wrapper
-    input(type='text' placeholder='New Porro' ng-model='newThing.name')
-  button.button.button-clear(ng-click='save()') Add
+    input(type='text' placeholder='New Porro' ng-model='newThing.name' ng-enter='save()')
 
 //- app.directive('ngEnter', function () {
 //-     return function (scope, element, attrs) {
