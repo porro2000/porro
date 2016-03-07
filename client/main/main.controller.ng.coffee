@@ -7,7 +7,7 @@ angular.module 'buildoSolidFunApp'
 
   $scope.helpers
     things: () => Things.find {}, { sort: { createdAt: -1 } }
-    users: () => Users
+    users: () => $meteor.collection(Meteor.users)
 
   $scope.subscribe 'things', () ->
     [
@@ -26,9 +26,13 @@ angular.module 'buildoSolidFunApp'
   update = (thing) =>
     Things.update thing._id, { $set: { parties: thing.parties } }
 
-  $scope.picture = (user, options = {}) => "//graph.facebook.com/#{user.services.facebook.id}/picture?height=#{options.height}"
+  $scope.picture = (user) => $scope.pictureFromFBId(user?.services?.facebook?.id)
 
-  $scope.pictureFromId = (_id) => $scope.picture Users.find(_id)
+  $scope.pictureFromId = (_id) =>
+    user = Users.filter( (u) => u._id)[0]
+    $scope.picture(user)
+
+  $scope.pictureFromFBId = (FBId) => "//graph.facebook.com/#{FBId}/picture"
 
   $scope.togglePerson = (thing, person) =>
     if thing.parties.indexOf(person) is -1
