@@ -1,4 +1,4 @@
-.bar.bar-header(ng-class='{ "bar-positive": currentUser, "bar-stable": !currentUser }')
+.bar.bar-footer(ng-class='{ "bar-positive": currentUser, "bar-stable": !currentUser }')
   .title {{ currentUser.profile.name }}
   button.button.button-clear(ng-if='currentUser' ng-click='logout()')
     .icon.ion-log-out
