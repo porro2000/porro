@@ -16,6 +16,7 @@ angular.module 'buildoSolidFunApp'
   console.log($scope.things)
 
   $scope.remove = (thing) ->
+    if not confirm 'Sure?' then return
     Things.remove
       _id: thing._id
     $ionicScrollDelegate.resize()
