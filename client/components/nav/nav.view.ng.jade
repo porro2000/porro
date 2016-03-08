@@ -1,5 +1,5 @@
-.bar.bar-footer(ng-class='{ "bar-positive": currentUser, "bar-stable": !currentUser }')
-  .title {{ currentUser.profile.name }}
+.bar.bar-footer.bar-positive(ng-controller="NavCtrl")
+  .title {{ initials(currentUser.profile.name) }}
   button.button.button-clear(ng-if='currentUser' ng-click='logout()')
     .icon.ion-log-out
   .title(ng-if='!currentUser' ng-click='login()') LOGIN TO START
