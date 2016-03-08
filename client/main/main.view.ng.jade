@@ -11,6 +11,5 @@ ion-pane
         p
           span.avatar-list(ng-repeat='user in $parent.users')
             img(ng-src="{{$parent.picture(user)}}" ng-class="{ inactive: thing.parties.indexOf(user._id) === -1 }" ng-click='$parent.togglePerson(thing, user._id)')
-
-        button.button.button-assertive.button-clear(ng-click='$parent.remove(thing)')
+        button.button.button-assertive.button-clear(ng-click='$parent.showConfirmDelete(thing)')
           i.icon.ion-trash-a

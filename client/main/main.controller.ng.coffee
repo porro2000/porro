@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'buildoSolidFunApp'
-.controller 'MainCtrl', ($scope, $ionicScrollDelegate, $meteor) ->
+.controller 'MainCtrl', ($scope, $ionicScrollDelegate, $ionicActionSheet, $meteor) ->
 
   Users = $meteor.collection(Meteor.users)
 
@@ -15,10 +15,7 @@ angular.module 'buildoSolidFunApp'
       $scope.getReactively 'search'
     ]
 
-  console.log($scope.things)
-
-  $scope.remove = (thing) ->
-    if not confirm 'Sure?' then return
+  remove = (thing) ->
     Things.remove
       _id: thing._id
     $ionicScrollDelegate.resize()
@@ -41,8 +38,14 @@ angular.module 'buildoSolidFunApp'
       thing.parties = thing.parties.filter (p) => p isnt person
     update thing
 
-  $scope.initials = (name) =>
-    name
-      .split(' ')
-      .map (x) => x[0]
-      .join('')
+
+  $scope.showConfirmDelete = (thing) ->
+    hideSheet = $ionicActionSheet.show({
+      destructiveText: 'Delete',
+      titleText: 'Are you sure?',
+      cancelText: 'Cancel',
+      cancel: hideSheet,
+      destructiveButtonClicked: ->
+        remove thing
+        hideSheet()
+    })
