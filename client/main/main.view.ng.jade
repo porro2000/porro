@@ -5,12 +5,11 @@ ion-pane
     //- ion-content directive. Outside ion-content you can call 'things' directly
     .list(ng-if='currentUser')
       .item.item-button-right.item-avatar(ng-repeat='thing in $parent.things')
-        img(ng-src="//graph.facebook.com/{{thing.createdBy}}/picture")
+        img(ng-src="{{$parent.pictureFromId(thing.createdBy)}}")
         h2 {{ thing.name }}
         p {{ thing.createdAt.toLocaleString() }}
         p
           span.avatar-list(ng-repeat='user in $parent.users')
-            img(ng-src="//graph.facebook.com/{{user.services.facebook.id}}/picture" ng-class="{ inactive: thing.parties.indexOf(user.services.facebook.id) === -1 }" ng-click='$parent.togglePerson(thing, user.services.facebook.id)')
-
-        button.button.button-assertive.button-clear(ng-click='$parent.remove(thing)')
+            img(ng-src="{{$parent.picture(user)}}" ng-class="{ inactive: thing.parties.indexOf(user._id) === -1 }" ng-click='$parent.togglePerson(thing, user._id)')
+        button.button.button-assertive.button-clear(ng-click='$parent.showConfirmDelete(thing)')
           i.icon.ion-trash-a
