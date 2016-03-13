@@ -4,7 +4,7 @@ ion-pane
     //- access our own scope. This only applies for variables inside an
     //- ion-content directive. Outside ion-content you can call 'things' directly
     .list(ng-if='currentUser')
-      .item.item-button-right.item-avatar(ng-repeat='thing in $parent.things')
+      .item.item-button-right.item-avatar(ng-repeat='thing in $parent.doneThings')
         img(ng-src="{{$parent.pictureFromId(thing.createdBy)}}")
         h2 {{ thing.name }}
         p {{ thing.createdAt.toLocaleString() }}
@@ -17,12 +17,3 @@ ion-pane
             )
         button.button.button-assertive.button-clear(ng-click='$parent.showConfirmDelete(thing)')
           i.icon.ion-trash-a
-        button.button.button-balanced.button-clear(ng-click='$parent.checkAsDone(thing)')
-          i.icon.ion-checkmark
-    .list(ng-if='currentUser')
-      .item.item-button-right.item-avatar(ng-repeat='user in $parent.users | orderBy:$parent.joined:true')
-        img(ng-src="{{$parent.picture(user)}}")
-        h2 {{ user.profile.name }}
-        p
-          span {{ $parent.joined(user) }}
-          .porro-bar(ng-style="{ width:$parent.barWidth(user)}")

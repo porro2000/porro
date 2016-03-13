@@ -3,9 +3,9 @@
 angular.module 'buildoSolidFunApp'
 .config ($stateProvider) ->
   $stateProvider
-  .state 'main',
-    url: '/'
-    templateUrl: 'client/main/main.view.html'
+  .state 'archive',
+    url: '/archive'
+    templateUrl: 'client/archive/archive.view.html'
     controller: 'MainCtrl'
     resolve:
       currentUser: ['$meteor', ($meteor) ->
