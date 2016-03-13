@@ -7,3 +7,7 @@ angular.module 'buildoSolidFunApp'
     url: '/'
     templateUrl: 'client/main/main.view.html'
     controller: 'MainCtrl'
+    resolve:
+      currentUser: ['$meteor', ($meteor) ->
+        $meteor.requireUser()
+      ]
