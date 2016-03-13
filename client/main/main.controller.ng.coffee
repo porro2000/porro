@@ -29,7 +29,7 @@ angular.module 'buildoSolidFunApp'
   $scope.picture = (user) => $scope.pictureFromFBId(user?.services?.facebook?.id)
 
   $scope.pictureFromId = (_id) =>
-    user = Users.filter((u) => u._id === _id)[0]
+    user = Users.filter((u) => u._id is _id)[0]
     $scope.picture(user)
 
   $scope.pictureFromFBId = (FBId) => "//graph.facebook.com/#{FBId}/picture"
